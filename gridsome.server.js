@@ -5,12 +5,37 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
+
 module.exports = function (api) {
+
   api.loadSource(({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   })
 
-  api.createPages(({ createPage }) => {
-    // Use the Pages API here: https://gridsome.org/docs/pages-api/
+  api.createPages(async ({ graphql, createPage }) => {
+    const { data } = await graphql(`{
+      graphCMS {
+        albums {
+          id
+          title
+        }
+      }
+    }`)
+
+    console.log('----');
+    console.log(data.graphCMS.albums);
+    console.log('----');
+
+    data.graphCMS.albums.forEach((node) => {
+      console.log(node);
+      createPage({
+        path: `/album/${node.id}`,
+        component: './src/templates/Album.vue',
+        context: {
+          id: node.id
+        }
+      })
+    })
   })
+
 }

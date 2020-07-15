@@ -1,33 +1,57 @@
 <template>
   <Layout>
-
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
+    <nav class="c-album__wrapper">
+      <g-link
+              :key="index"
+              v-for="(album, index) in $page.graphCMS.albums"
+              class="c-album__item"
+              :to="`/album/${album.id}`">
+        <h3 class="c-album__title"> {{album.title}} </h3>
+      </g-link>
+    </nav>
   </Layout>
 </template>
+
+<page-query>
+  query {
+    graphCMS {
+      albums {
+        id
+        title
+      }
+    }
+  }
+</page-query>
 
 <script>
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'Main page'
   }
 }
 </script>
 
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
+<style scoped>
+  .c-album__wrapper {
+    margin: 5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .c-album__item {
+    background: teal;
+    color: white;
+    text-decoration: none;
+    flex: 0 0 45%;
+    max-width: 45%;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  .c-album__item:hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transform: translateY(-4px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  }
 </style>

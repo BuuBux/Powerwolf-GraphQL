@@ -1,15 +1,13 @@
 <template>
-  <div class="layout">
+  <div class="wrapper">
     <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-      </nav>
+      <div class="layout">
+        <g-link class="c-header__title" to="/">{{ $static.metadata.siteName }}</g-link>
+      </div>
     </header>
-    <slot/>
+    <div class="layout">
+      <slot/>
+    </div>
   </div>
 </template>
 
@@ -36,15 +34,28 @@ body {
   padding-right: 20px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
+.c-header__title {
+  padding: 3rem;
+  font-family: 'Rock Salt', cursive;
+  color: #fff;
+  font-size: 42px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+  display: inline-block;
+  text-decoration: none;
 }
 
-.nav__link {
-  margin-left: 20px;
+.c-header__title:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-4px);
 }
+
+.header {
+  min-height: 600px;
+  background: url('../assets/slice1.jpg') 50% 20% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
