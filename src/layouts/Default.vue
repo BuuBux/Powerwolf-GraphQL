@@ -20,11 +20,16 @@ query {
 </static-query>
 
 <style>
+  *{
+    box-sizing: border-box;
+  }
 body {
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   margin:0;
   padding:0;
   line-height: 1.5;
+  min-height: 100vh;
+  background: url('../assets/slice1.jpg') 50% 20% / cover no-repeat;
 }
 
 .layout {
@@ -51,8 +56,7 @@ body {
 }
 
 .header {
-  min-height: 600px;
-  background: url('../assets/slice1.jpg') 50% 20% / cover no-repeat;
+  margin: 5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
